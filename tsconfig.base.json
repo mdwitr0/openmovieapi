@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@kinopoiskdev/prisma-api": ["libs/prisma-api/src/index.ts"],
+      "@kinopoiskdev/prisma-oms": ["libs/prisma-oms/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

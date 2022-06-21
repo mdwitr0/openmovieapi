@@ -1,0 +1,844 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma-client"
+}
+
+// Movie enums
+enum MovieType {
+  ANIMATED_SERIES // Мульт-сериал
+  ANIME // Аниме
+  CARTOON // Мультфильм
+  MINI_SERIES // Мини-сериал
+  MOVIE // Фильм
+  TV_SERIES // Сериал
+  TV_SHOW // ТВ-Шоу
+  VIDEO // Видео
+}
+
+enum MovieStatus {
+  ANNOUNCED // Анонсирован
+  CANCELLED // Отменен
+  COMPLETED // Выпущен
+  CONTINUES // Продолжается
+  FILMING // Сьемки
+  IN_PRODUCTION // В производстве
+  PILOT // Пилот
+  POST_PRODUCTION // Пост-продакшн
+  PRE_PRODUCTION // Пре-продакшен
+  RUMORS // Слухи
+}
+
+enum MovieGenre {
+  ACTION // боевик
+  ADULT // для взрослых
+  ADVENTURE // приключения
+  ANIME // аниме
+  BIOGRAPHY // биография
+  CARTOON // мультфильм
+  CEREMONY // церемония
+  CHILDREN // детский
+  COMEDY // комедия
+  CONCERT // концерт
+  CRIME // криминал
+  DETECTIVE // детектив
+  DOCUMENTARY // документальный
+  DRAMA // драма
+  FAMILY // семейный
+  FANTASY // фэнтези
+  FICTION // фантастика
+  FILM_NOIR // фильм-нуар
+  GAME // игра
+  HORROR // ужасы
+  MELODRAMA // мелодрама
+  MILITARY // военный
+  MUSIC // музыка
+  MUSICAL // мюзикл
+  NEWS // новости
+  REAL_TV // реальное ТВ
+  SHORT_FILM // короткометражка
+  SPORTS // спорт
+  STORY // история
+  TALK_SHOW // ток-шоу
+  THRILLER // триллер
+  WESTERN // вестерн
+}
+
+enum Country {
+  AUSTRALIA // Австралия
+  AUSTRIA // Австрия
+  AZERBAIJAN // Азербайджан
+  ALBANIA // Албания
+  ALGERIA // Алжир
+  US_VIRGIN_ISLANDS // Американские Виргинские острова
+  AMERICAN_SAMOA // Американское Самоа
+  ANGOLA // Ангола
+  ANDORRA // Андорра
+  ANTARCTICA // Антарктида
+  ANTIGUA_AND_BARBUDA // Антигуа и Барбуда
+  ANTILLES // Антильские Острова
+  ARGENTINA // Аргентина
+  ARMENIA // Армения
+  ARUBA // Аруба
+  AFGHANISTAN // Афганистан
+  BAHAMAS // Багамы
+  BANGLADESH // Бангладеш
+  BARBADOS // Барбадос
+  BAHRAIN // Бахрейн
+  BELARUS // Беларусь
+  BELIZE // Белиз
+  BELGIUM // Бельгия
+  BENIN // Бенин
+  BERMUDA // Бермуды
+  BURMA // Бирма
+  BULGARIA // Болгария
+  BOLIVIA // Боливия
+  BOSNIA // Босния
+  BOSNIA_AND_HERZEGOVINA // Босния и Герцеговина
+  BOTSWANA // Ботсвана
+  BRAZIL // Бразилия
+  BRUNEI_DARUSSALAM // Бруней-Даруссалам
+  BURKINA_FASO // Буркина-Фасо
+  BURUNDI // Бурунди
+  BHUTAN // Бутан
+  VANUATU // Вануату
+  VATICAN // Ватикан
+  CITY_UNITED_KINGDOM // Великобритания
+  HUNGARY // Венгрия
+  VENEZUELA // Венесуэла
+  VIRGIN_ISLANDS_UK // Виргинские Острова (Великобритания)
+  VIRGIN_ISLANDS_USA // Виргинские Острова (США)
+  OUTER_SMALL_ISLANDS_OF_THE_USA // Внешние малые острова США
+  VIETNAM // Вьетнам
+  VIETNAM_NORTH // Вьетнам Северный
+  GABON // Габон
+  HAITI // Гаити
+  GUYANA // Гайана
+  GAMBIA // Гамбия
+  GHANA // Гана
+  GUADELOUPE // Гваделупа
+  GUATEMALA // Гватемала
+  GUINEA // Гвинея
+  GUINEA_BISSAU // Гвинея-Бисау
+  GERMANY // Германия
+  GERMANY_GDR // Германия (ГДР)
+  GERMANY_FRG // Германия (ФРГ)
+  GIBRALTAR // Гибралтар
+  HONDURAS // Гондурас
+  HONG_KONG // Гонконг
+  GRENADA // Гренада
+  GREENLAND // Гренландия
+  GREECE // Греция
+  GEORGIA // Грузия
+  GUAM // Гуам
+  DENMARK // Дания
+  DOMINIKA // Доминика
+  DOMINICANA // Доминикана
+  EGYPT // Египет
+  ZAIRE // Заир
+  ZAMBIA // Замбия
+  WESTERN_SAHARA // Западная Сахара
+  ZIMBABWE // Зимбабве
+  ISRAEL // Израиль
+  INDIA // Индия
+  INDONESIA // Индонезия
+  JORDAN // Иордания
+  IRAQ // Ирак
+  IRAN // Иран
+  IRISH // Ирландия
+  ICELAND // Исландия
+  SPAIN // Испания
+  ITALY // Италия
+  YEMEN // Йемен
+  CAPE_VERDE // Кабо-Верде
+  KAZAKHSTAN // Казахстан
+  CAYMAN_ISLANDS // Каймановы острова
+  CAMBODIA // Камбоджа
+  CAMEROON // Камерун
+  CANADA // Канада
+  QATAR // Катар
+  KENYA // Кения
+  CYPRUS // Кипр
+  KYRGYZSTAN // Киргизия
+  KIRIBATI // Кирибати
+  CHINA // Китай
+  COLOMBIA // Колумбия
+  KOMORS // Коморы
+  CONGO // Конго
+  CONGO_DRC // Конго (ДРК)
+  KOREA // Корея
+  NORTH_KOREA // Корея Северная
+  SOUTH_KOREA // Корея Южная
+  KOSOVO // Косово
+  COSTA_RICA // Коста-Рика
+  IVORY_COAST // Кот-д’Ивуар (Берег Слоновой кости)
+  CUBA // Куба
+  KUWAIT // Кувейт
+  LAOS // Лаос
+  LATVIA // Латвия
+  LESOTHO // Лесото
+  LIBERIA // Либерия
+  LEBANON // Ливан
+  LIBYA // Ливия
+  LITHUANIA // Литва
+  LIECHTENSTEIN // Лихтенштейн
+  LUXEMBOURG // Люксембург
+  MAURITIUS // Маврикий
+  MAURITANIA // Мавритания
+  MADAGASCAR // Мадагаскар
+  MACAU // Макао
+  MACEDONIA // Македония
+  MALAWI // Малави
+  MALAYSIA // Малайзия
+  MALI // Мали
+  MALDIVES // Мальдивы
+  MALTA // Мальта
+  MOROCCO // Марокко
+  MARTINIQUE // Мартиника
+  MARSHALL_ISLANDS // Маршалловы острова
+  MEXICO // Мексика
+  MOZAMBIQUE // Мозамбик
+  MOLDOVA // Молдова
+  MONACO // Монако
+  MONGOLIA // Монголия
+  MONTSERRAT // Монтсеррат
+  MYANMAR // Мьянма
+  NAMIBIA // Намибия
+  NEPAL // Непал
+  NIGER // Нигер
+  NIGERIA // Нигерия
+  NETHERLANDS // Нидерланды
+  NICARAGUA // Никарагуа
+  NEW_ZEALAND // Новая Зеландия
+  NEW_CALEDONIA // Новая Каледония
+  NORWAY // Норвегия
+  UAE // ОАЭ
+  OCCUPIED_PALESTINIAN_TERRITORY // Оккупированная Палестинская территория
+  OMAN // Оман
+  ISLE // Остров Мэн
+  OF_MAN_COOK_ISLANDS // Острова Кука
+  PAKISTAN // Пакистан
+  PALAU // Палау
+  PALESTINE // Палестина
+  PANAMA_HAT // Панама
+  PAPUA_NEW_GUINEA // Папуа - Новая Гвинея
+  PARAGUAY // Парагвай
+  PERU // Перу
+  POLAND // Польша
+  PORTUGAL // Португалия
+  PUERTO_RICO // Пуэрто Рико
+  REUNION // Реюньон
+  THE_RUSSIAN_EMPIRE // Российская империя
+  RUSSIA // Россия
+  RWANDA // Руанда
+  ROMANIA // Румыния
+  USSR // СССР
+  USA // США
+  EL_SALVADOR // Сальвадор
+  SAMOA // Самоа
+  SAN_MARINO // Сан-Марино
+  SAUDI_ARABIA // Саудовская Аравия
+  SWAZILAND // Свазиленд
+  NORTHERN_MACEDONIA // Северная Македония
+  SEYCHELLES // Сейшельские острова
+  SENEGAL // Сенегал
+  SAINT_VINCENT_AND_THE_GRENADINES // Сент-Винсент и Гренадины
+  SAINT_LUCIA // Сент-Люсия
+  SERBIA // Сербия
+  SERBIA_AND_MONTENEGRO // Сербия и Черногория
+  SIAM // Сиам
+  SINGAPORE // Сингапур
+  SYRIA // Сирия
+  SLOVAKIA // Словакия
+  SLOVENIA // Словения
+  SOMALIA // Сомали
+  SUDAN // Судан
+  SURINAME // Суринам
+  SIERRA_LEONE // Сьерра-Леоне
+  TAJIKISTAN // Таджикистан
+  THAILAND // Таиланд
+  TAIWAN // Тайвань
+  TANZANIA // Танзания
+  TIMOR_LESTE // Тимор-Лесте
+  TOGO // Того
+  TONGA // Тонга
+  TRINIDAD_AND_TOBAGO // Тринидад и Тобаго
+  TUVALU // Тувалу
+  TUNISIA // Тунис
+  TURKMENISTAN // Туркменистан
+  TURKEY // Турция
+  UGANDA // Уганда
+  UZBEKISTAN // Узбекистан
+  UKRAINE // Украина
+  URUGUAY // Уругвай
+  FAROE_ISLANDS // Фарерские острова
+  FEDERATED_STATES_OF_MICRONESIA // Федеративные Штаты Микронезии
+  FIJI // Фиджи
+  PHILIPPINES // Филиппины
+  FINLAND // Финляндия
+  FRANCE // Франция
+  FRENCH_GUIANA // Французская Гвиана
+  FRENCH_POLYNESIA // Французская Полинезия
+  CROATIA // Хорватия
+  TSAR // ЦАР
+  CHAD // Чад
+  MONTENEGRO // Черногория
+  CZECH // Чехия
+  CZECHOSLOVAKIA // Чехословакия
+  CHILE // Чили
+  SWITZERLAND // Швейцария
+  SWEDEN // Швеция
+  SRI_LANKA // Шри-Ланка
+  ECUADOR // Эквадор
+  EQUATORIAL_GUINEA // Экваториальная Гвинея
+  ERITREA // Эритрея
+  ESTONIA // Эстония
+  ETHIOPIA // Эфиопия
+  SOUTH_AFRICA // ЮАР
+  YUGOSLAVIA // Югославия
+  YUGOSLAVIA_FR // Югославия (ФР)
+  JAMAICA // Ямайка
+  JAPAN // Япония
+}
+
+enum Language {
+  AFAR
+  ABKHAZIAN
+  AFRIKAANS
+  AKAN
+  ALBANIAN
+  AMHARIC
+  ARABIC
+  ARAGONESE
+  ARMENIAN
+  ASSAMESE
+  AVARIC
+  AYMARA
+  AZERBAIJANI
+  BAMBARA
+  BASHKIR
+  BASQUE
+  BELARUSIAN
+  BENGALI
+  BISLAMA
+  BOSNIAN
+  BRETON
+  BULGARIAN
+  BURMESE
+  CANTONESE
+  CATALAN
+  CHAMORRO
+  CHECHEN
+  CHICHEWA_NYANJA
+  CORNISH
+  CORSICAN
+  CREE
+  CROATIAN
+  CZECH
+  DANISH
+  DIVEHI
+  DUTCH
+  DZONGKHA
+  ENGLISH
+  ESPERANTO
+  ESTONIAN
+  FAROESE
+  FIJIAN
+  FINNISH
+  FRENCH
+  FRISIAN
+  FULAH
+  GAELIC
+  GALICIAN
+  GANDA
+  GEORGIAN
+  GERMAN
+  GREEK
+  GUARANI
+  GUJARATI
+  HAITIAN_HAITIAN_CREOLE
+  HAUSA
+  HEBREW
+  HERERO
+  HINDI
+  HIRI_MOTU
+  HUNGARIAN
+  ICELANDIC
+  IGBO
+  INDONESIAN
+  INTERLINGUA
+  INTERLINGUE
+  INUKTITUT
+  INUPIAQ
+  IRISH
+  ITALIAN
+  JAPANESE
+  JAVANESE
+  KALAALLISUT
+  KANNADA
+  KASHMIRI
+  KAZAKH
+  KHMER
+  KIKUYU
+  KINYARWANDA
+  KIRGHIZ
+  KOREAN
+  KURDISH
+  LAO
+  LATIN
+  LATVIAN
+  LETZEBURGESCH
+  LINGALA
+  LITHUANIAN
+  MACEDONIAN
+  MALAGASY
+  MALAY
+  MALAYALAM
+  MALTESE
+  MANDARIN
+  MAORI
+  MARATHI
+  MARSHALL
+  MOLDAVIAN
+  MONGOLIAN
+  NAURU
+  NAVAJO
+  NEPALI
+  NO_LANGUAGE
+  NORTHERN_SAMI
+  NORWEGIAN
+  NORWEGIAN_BOKMAL
+  NORWEGIAN_NYNORSK
+  OCCITAN
+  OJIBWA
+  ORIYA
+  OROMO
+  OSSETIAN_OSSETIC
+  PALI
+  PERSIAN
+  POLISH
+  PORTUGUESE
+  PUNJABI
+  PUSHTO
+  QUECHUA
+  RAETO_ROMANCE
+  ROMANIAN
+  RUNDI
+  RUSSIAN
+  SAMOAN
+  SANGO
+  SANSKRIT
+  SARDINIAN
+  SERBIAN
+  SERBO_CROATIAN
+  SHONA
+  SINDHI
+  SINHALESE
+  SLAVIC
+  SLOVAK
+  SLOVENIAN
+  SOMALI
+  SOTHO
+  SPANISH
+  SUNDANESE
+  SWAHILI
+  SWATI
+  SWEDISH
+  TAGALOG
+  TAHITIAN
+  TAJIK
+  TAMIL
+  TATAR
+  TELUGU
+  THAI
+  TIBETAN
+  TIGRINYA
+  TONGA
+  TSWANA
+  TURKISH
+  TURKMEN
+  TWI
+  UIGHUR
+  UKRAINIAN
+  URDU
+  UZBEK
+  VENDA
+  VIETNAMESE
+  WALLOON
+  WELSH
+  WOLOF
+  XHOSA
+  YI
+  YIDDISH
+  YORUBA
+  ZULU
+}
+
+// Person enums
+enum ProfessionType {
+  ACTOR // Актер
+  NOT_LISTED_IN_THE_CREDITS // В титрах не указаны
+  BAND_CHRONICLE // Группа: Хроника
+  BAND_PLAYING_THEMSELVES // Группа: играют самих себя
+  DIRECTOR // Режиссер
+  COMPOSER // Композитор
+  EDITOR // Монтажер
+  VOICE_DIRECTOR // Звукорежиссер
+  OPERATOR // Оператор
+  TRANSLATOR // Переводчик
+  PRODUCER // Продюсер
+  WRITER // Сценарист
+  PRODUCTION_DESIGNER // Художник-постановщик
+  PRODUCER_USSR // Продюссер СССР
+}
+
+enum DivorcedReason {
+  ANNULLED // Аннулирован
+  DIVORCE // Развод
+  DIED // Смерть
+}
+
+enum PersonRelation {
+  HUSBAND // Супруг
+  WIFE // Супруга
+}
+
+enum PersonSex {
+  Male // Мужской
+  Female // Женский
+}
+
+// Image enums
+enum ImageType {
+  BACKDROP
+  POSTER
+  FRAME
+  LOGO
+}
+
+// Video enums
+enum VideoType {
+  TRAILER
+  TEASER
+}
+
+enum VideoSource {
+  YOUTUBE
+  YANDEX
+}
+
+// Movie types
+type CollectionsImage {
+  url String?
+}
+
+type MovieBackdrop {
+  previewUrl String?
+  url        String?
+}
+
+type MovieLogo {
+  url String?
+}
+
+type MovieBudget {
+  currency String?
+  value    String
+}
+
+type MovieCountries {
+  id   String @map("_id") @db.ObjectId
+  name String
+}
+
+type MovieDistributors {
+  distributor        String?
+  distributorRelease String?
+}
+
+type MovieExternalId {
+  imdb String?
+  tmdb Int?
+  kpHD String?
+}
+
+type MovieFees {
+  usa    MovieFeesItem?
+  world  MovieFeesItem?
+  russia MovieFeesItem?
+}
+
+type MovieFeesItem {
+  currency String
+  value    Int
+}
+
+type MoviePremiere {
+  country String?
+  bluray  DateTime? @db.Date
+  cinema  DateTime? @db.Date
+  digital DateTime? @db.Date
+  dvd     DateTime? @db.Date
+  russia  DateTime? @db.Date
+  world   DateTime? @db.Date
+}
+
+type MovieRating {
+  kp                 Float
+  imdb               Float
+  await              Float?
+  filmCritics        Float?
+  russianFilmCritics Float?
+  tmdb               Float?
+}
+
+type MovieTechnology {
+  has3D   Boolean
+  hasImax Boolean
+}
+
+type MovieVotes {
+  await              Int?
+  filmCritics        Int?
+  imdb               Int
+  kp                 Int
+  russianFilmCritics Int?
+  tmdb               Int?
+}
+
+// Person types
+type PersonSpouses {
+  children       Int
+  divorced       Boolean
+  divorcedReason DivorcedReason
+  name           String
+  relation       PersonRelation
+  sex            PersonSex?
+}
+
+// Season types
+type SeasonEpisode {
+  date        DateTime?
+  description String?
+  enName      String?
+  name        String?
+  number      Int
+}
+
+model Collection {
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  kpHdCollectionId String   @unique()
+  // String properties
+  image            String
+  title            String?
+  // Int properties
+  sortRange        Int
+  // Date proprties
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  // Relations
+  movies           Movie[]  @relation(fields: [movieIds], references: [id])
+  movieIds         String[] @db.ObjectId
+}
+
+model Video {
+  id      String      @id @default(auto()) @map("_id") @db.ObjectId
+  kpId    Int
+  // String properties
+  name    String
+  url     String      @unique()
+  // Int properties
+  size    Int?
+  // Enum properties
+  source  VideoSource
+  type    VideoType?
+  // Relations
+  movie   Movie       @relation(fields: [movieId], references: [id])
+  movieId String      @db.ObjectId
+}
+
+model Image {
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  movieKpId  Int
+  // String properties
+  url        String    @unique()
+  language   String?
+  previewUrl String
+  // Int properties
+  kpMovieId  Int
+  height     Int?
+  width      Int?
+  // Enum properties
+  type       ImageType
+  // Date proprties
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  // Relations
+  movie      Movie     @relation(fields: [movieId], references: [id])
+  movieId    String    @unique @db.ObjectId
+}
+
+model Season {
+  id            String          @id @default(auto()) @map("_id") @db.ObjectId
+  movieKpId     Int
+  // Int properties
+  episodesCount Int
+  number        Int
+  // Type properties
+  episodes      SeasonEpisode[]
+  // Date proprties
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  // Relations
+  movie         Movie           @relation(fields: [movieId], references: [id])
+  movieId       String          @db.ObjectId
+}
+
+model Review {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  kpMovieId      Int
+  // String properties
+  author         String
+  review         String
+  title          String?
+  // Int properties
+  reviewDislikes Int
+  reviewLikes    Int
+  userRating     Int
+  // Date proprties
+  date           DateTime @db.Date
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  // Relations
+  movie          Movie    @relation(fields: [movieId], references: [id])
+  movieId        String   @db.ObjectId
+}
+
+model Person {
+  id          String           @id @default(auto()) @map("_id") @db.ObjectId
+  kpId        Int              @unique
+  // String properties
+  enName      String?
+  name        String?
+  photo       String
+  sex         PersonSex?
+  birthPlace  String[]
+  deathPlace  String[]
+  // Int properties
+  age         Int?
+  countAwards Int?
+  growth      Int?
+  // Enum properties
+  profession  ProfessionType[]
+  // Type properties
+  spouses     PersonSpouses[]
+  // Date proprties
+  birthday    DateTime?        @db.Date
+  death       DateTime?        @db.Date
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  // Relations
+  movies      MovieOnPerson[]
+  facts       PersonFact[]
+}
+
+model MovieOnPerson {
+  id          String           @id @default(auto()) @map("_id") @db.ObjectId
+  kpId        Int              @unique
+  kpMovieId   Int
+  // String properties
+  description String
+  // Enum properties
+  profession  ProfessionType[]
+  // Date proprties
+  assignedAt  DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  // Relations
+  movie       Movie            @relation(fields: [movieId], references: [id])
+  movieId     String           @db.ObjectId
+  person      Person           @relation(fields: [personId], references: [id])
+  personId    String           @db.ObjectId
+}
+
+model PersonFact {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  personKpId Int
+  value      String
+  // Date proprties
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  // Relations
+  personId   String   @db.ObjectId
+  person     Person   @relation(fields: [personId], references: [id])
+}
+
+model MovieFact {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  movieKpId Int
+  spoiler   Boolean?
+  type      String?
+  value     String
+  // Date proprties
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  // Relations
+  movie     Movie    @relation(fields: [movieId], references: [id])
+  movieId   String   @db.ObjectId
+}
+
+model Movie {
+  // Id properties
+  id                            String             @id @default(auto()) @map("_id") @db.ObjectId
+  kpId                          Int                @unique
+  externalId                    MovieExternalId
+  // String properties
+  name                          String?
+  names                         String[]
+  enName                        String?
+  alternativeName               String?
+  description                   String?
+  ratingMpaa                    String?
+  shortDescription              String?
+  slogan                        String?
+  //Int properties
+  year                          Int?
+  movieLength                   Int?
+  ageRating                     Int?
+  // Enum properties
+  type                          MovieType?
+  status                        MovieStatus?
+  genres                        MovieGenre[]
+  countries                     Country[]
+  spokenLanguages               Language[]
+  // Type properties
+  rating                        MovieRating
+  budget                        MovieBudget?
+  distributors                  MovieDistributors?
+  votes                         MovieVotes
+  fees                          MovieFees?
+  premiere                      MoviePremiere?
+  technology                    MovieTechnology?
+  // Date proprties
+  createdAt                     DateTime           @default(now())
+  updatedAt                     DateTime           @updatedAt
+  // Relations
+  movieId                       String             @db.ObjectId()
+  images                        Image[]
+  videos                        Video[]
+  seasons                       Season[]
+  persons                       MovieOnPerson[]
+  facts                         MovieFact[]
+  review                        Review[]
+  // Sequels and prequels
+  movieHavingSequelsAndPrequels Movie              @relation("SequelsAndPrequels", fields: [movieId], references: [id], onUpdate: NoAction)
+  sequelsAndPrequels            Movie[]            @relation("SequelsAndPrequels")
+  // Similar movies
+  movieHavingSimilar            Movie              @relation("SimilarMovies", fields: [movieId], references: [id], onUpdate: NoAction)
+  similarMovies                 Movie[]            @relation("SimilarMovies")
+  collectionIds                 String[]           @db.ObjectId
+  collections                   Collection[]       @relation(fields: [collectionIds], references: [id])
+}

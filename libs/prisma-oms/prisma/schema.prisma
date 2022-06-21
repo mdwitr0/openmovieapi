@@ -1,0 +1,78 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("OMS_DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma-client"
+}
+
+enum InvoiceStatus {
+  PAID
+  UNRESOLVED
+  PAYMENT_PENDING
+  VOID
+  CREATED
+  OPEN
+  VIEWED
+}
+
+model Invoice {
+  id         String        @id @default(uuid()) @db.Uuid
+  user       User          @relation(fields: [userId], references: [id])
+  lifetime   Int           @default(24)
+  amount     Int           @default(0)
+  status     InvoiceStatus @default(CREATED)
+  userId     String        @db.Uuid
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
+  coinbaseId String        @default("")
+}
+
+model Tariff {
+  id                    String   @id @default(uuid()) @db.Uuid
+  name                  String
+  price                 Int      @default(0)
+  maxDailyCountRequests Int      @default(200)
+  users                 User[]
+  tokens                Token[]
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+}
+
+model Token {
+  id               String   @id @default(uuid()) @db.Uuid
+  publicKey        String   @default(uuid()) @db.Uuid
+  countRequests    Int      @default(0)
+  countAllRequests Int      @default(0)
+  userId           String?  @unique @db.Uuid
+  user             User?    @relation(fields: [userId], references: [id])
+  tariff           Tariff?  @relation(fields: [tariffId], references: [id])
+  tariffId         String?  @db.Uuid
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id                   String    @id @default(uuid()) @db.Uuid
+  email                String    @unique
+  username             String    @unique
+  password             String
+  balance              Int       @default(0)
+  role                 Role      @default(USER)
+  tokenId              String?   @db.Uuid
+  token                Token?
+  tariff               Tariff?   @relation(fields: [tariffId], references: [id])
+  tariffId             String?   @db.Uuid
+  tariffUpdateDate     DateTime  @default(now())
+  tariffExpirationDays DateTime  @default(now())
+  invoices             Invoice[]
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+}

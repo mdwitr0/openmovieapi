@@ -5,7 +5,9 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "prisma-api:g": "prisma generate --schema libs/prisma-api/prisma/schema.prisma",
+    "prisma-oms:g": "prisma generate --schema libs/prisma-oms/prisma/schema.prisma"
   },
   "private": true,
   "dependencies": {
@@ -23,9 +25,10 @@
     "@nrwl/eslint-plugin-nx": "14.3.6",
     "@nrwl/jest": "14.3.6",
     "@nrwl/linter": "14.3.6",
-    "@nrwl/nest": "14.3.6",
+    "@nrwl/nest": "^14.3.6",
     "@nrwl/node": "14.3.6",
     "@nrwl/workspace": "14.3.6",
+    "@prisma/client": "^3.15.2",
     "@types/jest": "27.4.1",
     "@types/node": "16.11.7",
     "@typescript-eslint/eslint-plugin": "~5.24.0",
