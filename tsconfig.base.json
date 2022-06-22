@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@kinopoiskdev/coinbase": ["libs/coinbase/src/index.ts"],
       "@kinopoiskdev/prisma-api": ["libs/prisma-api/src/index.ts"],
       "@kinopoiskdev/prisma-oms": ["libs/prisma-oms/src/index.ts"]
     }
