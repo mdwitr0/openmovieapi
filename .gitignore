@@ -37,3 +37,6 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+/libs/prisma-api/generated/*
+/libs/prisma-oms/generated/*
