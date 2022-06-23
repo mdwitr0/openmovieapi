@@ -145,7 +145,7 @@ export class FindMovieDto implements Movie {
   @ApiProperty({
     description: 'Остальные известные id фильма',
   })
-  externalId: MovieExternalId;
+  externalId: MovieExternalIdDto;
 
   // String properties
   @ApiProperty({ required: false })
