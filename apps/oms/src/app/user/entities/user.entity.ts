@@ -1,8 +1,8 @@
-import { Exclude, Expose, Type } from 'class-transformer';
+import {Exclude, Expose, Type} from 'class-transformer';
 
-import { ApiProperty } from '@nestjs/swagger';
-import { TariffEntity } from '../../tariff/entities/tariff.entity';
-import { TokenEntity } from '../../token/entities/token.entity';
+import {ApiProperty} from '@nestjs/swagger';
+import {TariffEntity} from '../../tariff/entities/tariff.entity';
+import {TokenEntity} from '../../token/entities/token.entity';
 
 export class UserEntity {
   @ApiProperty()

@@ -1,10 +1,11 @@
 import { Process, Processor } from '@nestjs/bull';
+import { jobNames, queueNames } from '../constants/queue.constant';
+
+import { CoinbaseUpdateInvoiceEntity } from './entities/coinbase-update-invoice.entity';
+import { EventCoinbaseDto } from './dto/event-coinbase.dto';
+import { InvoicesService } from './invoices.service';
 import { Job } from 'bull';
 import { instanceToPlain } from 'class-transformer';
-import { jobNames, queueNames } from 'src/constants/queue.contacnts';
-import { EventCoinbaseDto } from './dto/event-coinbase.dto';
-import { CoinbaseUpdateInvoiceEntity } from './entities/coinbase-update-invoice.entity';
-import { InvoicesService } from './invoices.service';
 
 @Processor(queueNames.INVOICE)
 export class InvoiceProcessor {
@@ -15,7 +16,7 @@ export class InvoiceProcessor {
       event.data.event.data.memo,
       instanceToPlain(new CoinbaseUpdateInvoiceEntity(event.data), {
         strategy: 'excludeAll',
-      }),
+      })
     );
   }
 }

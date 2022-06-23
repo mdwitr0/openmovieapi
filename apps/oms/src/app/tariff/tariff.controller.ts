@@ -11,14 +11,14 @@ import {
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
-import { TariffService } from './tariff.service';
-import { CreateTariffDto } from './dto/create-tariff.dto';
-import { UpdateTariffDto } from './dto/update-tariff.dto';
-import { RoleEnum } from '../enums/role.enum';
-import { Roles } from '../role/decorators/role.decorator';
-import { JwtAuthenticationGuard } from '../user/guards/jwt-authentication.guard';
-import { RoleGuard } from '../role/guards/role.guard';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import {TariffService} from './tariff.service';
+import {CreateTariffDto} from './dto/create-tariff.dto';
+import {UpdateTariffDto} from './dto/update-tariff.dto';
+import {RoleEnum} from '../enums/role.enum';
+import {Roles} from '../role/decorators/role.decorator';
+import {JwtAuthenticationGuard} from '../user/guards/jwt-authentication.guard';
+import {RoleGuard} from '../role/guards/role.guard';
+import {ApiBearerAuth, ApiTags} from '@nestjs/swagger';
 
 @UseInterceptors(ClassSerializerInterceptor)
 @ApiTags('tariff')

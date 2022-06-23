@@ -1,15 +1,15 @@
 import * as bcrypt from 'bcrypt';
 
-import { CreateUserDto } from './dto/create-user.dto';
-import { Injectable } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import { LoginUserDto } from './dto/login-user.dto';
-import { PrismaOmsService } from '@kinopoiskdev/prisma-oms';
-import { TariffService } from '../tariff/tariff.service';
-import { TokenService } from '../token/token.service';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { UserEntity } from './entities/user.entity';
-import { UserNotFoundException } from './exceptions/user-not-found.exception';
+import {CreateUserDto} from './dto/create-user.dto';
+import {Injectable} from '@nestjs/common';
+import {JwtService} from '@nestjs/jwt';
+import {LoginUserDto} from './dto/login-user.dto';
+import {PrismaOmsService} from '@kinopoiskdev/prisma-oms';
+import {TariffService} from '../tariff/tariff.service';
+import {TokenService} from '../token/token.service';
+import {UpdateUserDto} from './dto/update-user.dto';
+import {UserEntity} from './entities/user.entity';
+import {UserNotFoundException} from './exceptions/user-not-found.exception';
 
 @Injectable()
 export class UserService {

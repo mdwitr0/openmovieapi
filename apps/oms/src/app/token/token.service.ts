@@ -1,12 +1,13 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { PrismaService } from '../prisma/prisma.service';
-import { CreateTokenDto } from './dto/create-token.dto';
-import { TokenEntity } from './entities/token.entity';
-import { UpdateTokenDto } from './dto/update-token.dto';
+import {Injectable, NotFoundException} from '@nestjs/common';
+
+import {CreateTokenDto} from './dto/create-token.dto';
+import {PrismaOmsService} from '@kinopoiskdev/prisma-oms';
+import {TokenEntity} from './entities/token.entity';
+import {UpdateTokenDto} from './dto/update-token.dto';
 
 @Injectable()
 export class TokenService {
-  constructor(private readonly prismaService: PrismaService) {}
+  constructor(private readonly prismaService: PrismaOmsService) {}
 
   async create(createTokenDto: CreateTokenDto): Promise<TokenEntity> {
     const token = await this.prismaService.token.create({
@@ -33,7 +34,7 @@ export class TokenService {
 
   async update(
     id: string,
-    updateTokenDto: UpdateTokenDto,
+    updateTokenDto: UpdateTokenDto
   ): Promise<TokenEntity> {
     try {
       const token = await this.prismaService.token.update({

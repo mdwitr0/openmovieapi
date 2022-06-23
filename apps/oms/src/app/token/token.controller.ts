@@ -11,14 +11,15 @@ import {
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
-import { TokenService } from './token.service';
-import { CreateTokenDto } from './dto/create-token.dto';
-import { UpdateTokenDto } from './dto/update-token.dto';
-import { RoleEnum } from '../enums/role.enum';
-import { Roles } from '../role/decorators/role.decorator';
-import { JwtAuthenticationGuard } from '../user/guards/jwt-authentication.guard';
-import { RoleGuard } from '../role/guards/role.guard';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import {TokenService} from './token.service';
+import {CreateTokenDto} from './dto/create-token.dto';
+import {UpdateTokenDto} from './dto/update-token.dto';
+import {RoleEnum} from '../enums/role.enum';
+import {Roles} from '../role/decorators/role.decorator';
+import {JwtAuthenticationGuard} from '../user/guards/jwt-authentication.guard';
+import {RoleGuard} from '../role/guards/role.guard';
+import {ApiBearerAuth, ApiTags} from '@nestjs/swagger';
+
 @ApiBearerAuth()
 @ApiTags('token')
 @UseInterceptors(ClassSerializerInterceptor)

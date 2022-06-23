@@ -1,15 +1,15 @@
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
+
 import { CreateTariffDto } from './dto/create-tariff.dto';
-import { UpdateTariffDto } from './dto/update-tariff.dto';
-import { PrismaService } from '../prisma/prisma.service';
+import { PrismaOmsService } from '@kinopoiskdev/prisma-oms';
 import { TariffEntity } from './entities/tariff.entity';
-import { tariffTemplates } from './tariff.constans';
-import { ConfigService } from '@nestjs/config';
+import { UpdateTariffDto } from './dto/update-tariff.dto';
+import { tariffTemplates } from './constants/tariff.constant';
 
 @Injectable()
 export class TariffService {
   private logger = new Logger(TariffService.name);
-  constructor(private readonly prismaService: PrismaService) {}
+  constructor(private readonly prismaService: PrismaOmsService) {}
 
   async init(): Promise<void> {
     const tariffs = await this.getAll();
@@ -57,7 +57,7 @@ export class TariffService {
 
   async update(
     id: string,
-    updateTariffDto: UpdateTariffDto,
+    updateTariffDto: UpdateTariffDto
   ): Promise<TariffEntity> {
     try {
       const tariff = await this.prismaService.tariff.update({

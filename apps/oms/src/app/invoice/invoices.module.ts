@@ -1,13 +1,13 @@
-import { Module } from '@nestjs/common';
-import { InvoicesService } from './invoices.service';
-import { InvoicesController } from './invoices.controller';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { CoinbaseInvoiceModule } from '@app/coinbase/coinbase-invoice/coinbase-invoice.module';
-import { PrismaModule } from '../prisma/prisma.module';
-import { UserModule } from '../user/user.module';
-import { InvoiceProcessor } from './invoices.processor';
 import { BullModule } from '@nestjs/bull';
-import { queueNames } from 'src/constants/queue.contacnts';
+import { CoinbaseInvoiceModule } from '@kinopoiskdev/coinbase';
+import { ConfigModule } from '@nestjs/config';
+import { InvoiceProcessor } from './invoices.processor';
+import { InvoicesController } from './invoices.controller';
+import { InvoicesService } from './invoices.service';
+import { Module } from '@nestjs/common';
+import { PrismaOmsModule } from '@kinopoiskdev/prisma-oms';
+import { UserModule } from '../user/user.module';
+import { queueNames } from '../constants/queue.constant';
 
 @Module({
   controllers: [InvoicesController],
@@ -16,7 +16,7 @@ import { queueNames } from 'src/constants/queue.contacnts';
     ConfigModule,
     UserModule,
     CoinbaseInvoiceModule,
-    PrismaModule,
+    PrismaOmsModule,
     BullModule.registerQueue({
       name: queueNames.INVOICE,
     }),

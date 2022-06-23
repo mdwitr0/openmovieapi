@@ -1,6 +1,6 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { TariffController } from './tariff.controller';
-import { TariffService } from './tariff.service';
+import {Test, TestingModule} from '@nestjs/testing';
+import {TariffController} from './tariff.controller';
+import {TariffService} from './tariff.service';
 
 describe('TariffsController', () => {
   let controller: TariffController;

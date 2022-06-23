@@ -1,4 +1,4 @@
-import { Invoice, InvoiceStatus } from '@prisma/client';
+import { Invoice, InvoiceStatus } from '@kinopoiskdev/prisma-oms';
 
 import { ApiProperty } from '@nestjs/swagger';
 

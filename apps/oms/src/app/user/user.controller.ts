@@ -1,15 +1,15 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
-import { ApiBearerAuth, ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { GetCurrentUserId } from './decorators/get-current-user-id.decorator';
-import { GetCurrentUser } from './decorators/get-current-user.decorator';
-import { LoginUserDto } from './dto/login-user.dto';
-import { RoleGuard } from '../role/guards/role.guard';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UserEntity } from './entities/user.entity';
-import { UserNotFoundException } from './exceptions/user-not-found.exception';
-import { JwtAuthenticationGuard } from './guards/jwt-authentication.guard';
-import { LocalAuthenticationGuard } from './guards/local-authentication.guard';
-import { UserService } from './user.service';
+import {Body, Controller, Get, Post, UseGuards} from '@nestjs/common';
+import {ApiBearerAuth, ApiBody, ApiResponse, ApiTags} from '@nestjs/swagger';
+import {GetCurrentUserId} from './decorators/get-current-user-id.decorator';
+import {GetCurrentUser} from './decorators/get-current-user.decorator';
+import {LoginUserDto} from './dto/login-user.dto';
+import {RoleGuard} from '../role/guards/role.guard';
+import {CreateUserDto} from './dto/create-user.dto';
+import {UserEntity} from './entities/user.entity';
+import {UserNotFoundException} from './exceptions/user-not-found.exception';
+import {JwtAuthenticationGuard} from './guards/jwt-authentication.guard';
+import {LocalAuthenticationGuard} from './guards/local-authentication.guard';
+import {UserService} from './user.service';
 
 @ApiTags('user')
 @Controller('user')

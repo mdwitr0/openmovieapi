@@ -1,6 +1,6 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { Expose, Transform, Type } from 'class-transformer';
-import { EventCoinbaseDto } from '../dto/event-coinbase.dto';
+import {PartialType} from '@nestjs/mapped-types';
+import {Expose, Transform, Type} from 'class-transformer';
+import {EventCoinbaseDto} from '../dto/event-coinbase.dto';
 
 export class CoinbaseUpdateInvoiceEntity extends PartialType(EventCoinbaseDto) {
   @Expose()

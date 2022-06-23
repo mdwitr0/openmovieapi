@@ -11,26 +11,27 @@ import {
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Queue } from 'bull';
-import { jobNames, queueNames } from 'src/constants/queue.contacnts';
-import { RoleEnum } from 'src/enums/role.enum';
-import { InvoiceResDto } from 'src/invoice/dto/invoice.res.dto';
-import { Roles } from 'src/role/decorators/role.decorator';
-import { RoleGuard } from 'src/role/guards/role.guard';
-import { IUser } from 'src/tariff/interfaces/tariff.interface';
-import { GetCurrentUserId } from 'src/user/decorators/get-current-user-id.decorator';
-import { GetCurrentUser } from 'src/user/decorators/get-current-user.decorator';
-import { JwtAuthenticationGuard } from 'src/user/guards/jwt-authentication.guard';
+import { queueNames, jobNames } from '../constants/queue.constant';
+import { RoleEnum } from '../enums/role.enum';
+import { Roles } from '../role/decorators/role.decorator';
+import { RoleGuard } from '../role/guards/role.guard';
+import { IUser } from '../tariff/interfaces/tariff.interface';
+import { GetCurrentUserId } from '../user/decorators/get-current-user-id.decorator';
+import { GetCurrentUser } from '../user/decorators/get-current-user.decorator';
+import { JwtAuthenticationGuard } from '../user/guards/jwt-authentication.guard';
 import { CreateInvoiceDto } from './dto/create-invoice.dto';
 import { EventCoinbaseDto } from './dto/event-coinbase.dto';
+import { InvoiceResDto } from './dto/invoice.res.dto';
 import { UpdateInvoiceDto } from './dto/update-invoice.dto';
 import { InvoicesService } from './invoices.service';
+
 @ApiTags('invoice')
 @ApiBearerAuth()
 @Controller('invoice')
 export class InvoicesController {
   constructor(
     private readonly invoicesService: InvoicesService,
-    @InjectQueue(queueNames.INVOICE) private readonly invoicesQueue: Queue,
+    @InjectQueue(queueNames.INVOICE) private readonly invoicesQueue: Queue
   ) {}
 
   @Post('event/coinbase')
@@ -43,7 +44,7 @@ export class InvoicesController {
   @Post()
   async create(
     @GetCurrentUser() user: IUser,
-    @Body() createInvoiceDto: CreateInvoiceDto,
+    @Body() createInvoiceDto: CreateInvoiceDto
   ): Promise<InvoiceResDto> {
     return this.invoicesService.create(createInvoiceDto, user);
   }
@@ -60,7 +61,7 @@ export class InvoicesController {
   @Patch(':uuid')
   update(
     @Param('uuid', ValidationPipe) uuid: string,
-    @Body() updateInvoiceDto: UpdateInvoiceDto,
+    @Body() updateInvoiceDto: UpdateInvoiceDto
   ) {
     return this.invoicesService.update(uuid, updateInvoiceDto);
   }

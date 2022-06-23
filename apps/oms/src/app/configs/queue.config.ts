@@ -1,5 +1,5 @@
-import { BullModuleOptions } from '@nestjs/bull';
-import { ConfigService } from '@nestjs/config';
+import {BullModuleOptions} from '@nestjs/bull';
+import {ConfigService} from '@nestjs/config';
 
 export const bullConfig = async (
   configService: ConfigService
