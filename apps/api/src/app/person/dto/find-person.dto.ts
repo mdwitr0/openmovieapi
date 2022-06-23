@@ -30,14 +30,13 @@ export class PersonSpousesDro implements PersonSpouses {
 
 export class FindPersonDto implements Person {
   // Id properties
-
   @ApiProperty({ required: false })
   id: string;
 
   @ApiProperty({ required: false })
   kpId: number;
-  // String properties
 
+  // String properties
   @ApiProperty({ required: false })
   name: string;
 
@@ -52,8 +51,8 @@ export class FindPersonDto implements Person {
 
   @ApiProperty({ required: false, isArray: true })
   deathPlace: string[];
-  // Int properties
 
+  // Int properties
   @ApiProperty({ required: false })
   age: number;
 
@@ -62,8 +61,8 @@ export class FindPersonDto implements Person {
 
   @ApiProperty({ required: false })
   growth: number;
-  // Date properties
 
+  // Date properties
   @ApiProperty({ required: false, type: Date })
   birthday: Date;
 
@@ -75,15 +74,15 @@ export class FindPersonDto implements Person {
 
   @ApiProperty({ required: false, type: Date })
   death: Date;
-  // Enum properties
 
+  // Enum properties
   @ApiProperty({ required: false, isArray: true, enum: ProfessionType })
   profession: ProfessionType[];
 
   @ApiProperty({ required: false, enum: PersonSex })
   sex: PersonSex;
-  // Type properties
 
+  // Type properties
   @ApiProperty({ required: false, isArray: true, type: PersonSpousesDro })
   spouses: PersonSpousesDro[];
 }
