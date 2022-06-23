@@ -210,7 +210,6 @@ exports.Prisma.MovieScalarFieldEnum = makeEnum({
   spokenLanguages: 'spokenLanguages',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  movieId: 'movieId',
   collectionIds: 'collectionIds'
 });
 
