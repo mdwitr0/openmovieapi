@@ -1,16 +1,16 @@
 {
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/apps/uploader/src",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/uploader/src",
   "projectType": "application",
   "targets": {
     "build": {
       "executor": "@nrwl/node:webpack",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/apps/uploader",
-        "main": "apps/apps/uploader/src/main.ts",
-        "tsConfig": "apps/apps/uploader/tsconfig.app.json",
-        "assets": ["apps/apps/uploader/src/assets"]
+        "outputPath": "dist/apps/uploader",
+        "main": "apps/uploader/src/main.ts",
+        "tsConfig": "apps/uploader/tsconfig.app.json",
+        "assets": ["apps/uploader/src/assets"]
       },
       "configurations": {
         "production": {
@@ -19,8 +19,8 @@
           "inspect": false,
           "fileReplacements": [
             {
-              "replace": "apps/apps/uploader/src/environments/environment.ts",
-              "with": "apps/apps/uploader/src/environments/environment.prod.ts"
+              "replace": "apps/uploader/src/environments/environment.ts",
+              "with": "apps/uploader/src/environments/environment.prod.ts"
             }
           ]
         }
@@ -29,21 +29,21 @@
     "serve": {
       "executor": "@nrwl/node:node",
       "options": {
-        "buildTarget": "apps-uploader:build"
+        "buildTarget": "uploader:build"
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/apps/uploader/**/*.ts"]
+        "lintFilePatterns": ["apps/uploader/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/apps/uploader"],
+      "outputs": ["coverage/apps/uploader"],
       "options": {
-        "jestConfig": "apps/apps/uploader/jest.config.ts",
+        "jestConfig": "apps/uploader/jest.config.ts",
         "passWithNoTests": true
       }
     }

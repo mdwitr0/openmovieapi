@@ -36,13 +36,13 @@ async function bootstrap() {
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 
   const config = new DocumentBuilder()
-    .setTitle('Updater API documentation')
+    .setTitle('Uploader API documentation')
     .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup(docGlobalPrefix, app, document);
 
-  const port = process.env.PORT || 3335;
+  const port = process.env.PORT || 3336;
   await app.listen(port);
   logger.log(
     `🚀 API app is running on: http://localhost:${port}/${globalPrefix}`
