@@ -14,7 +14,7 @@ import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app/app.module';
 
 async function bootstrap() {
-  const logger = new Logger('Main');
+  const logger = new Logger('UPLOADER: Main');
   const globalPrefix = 'api';
   const docGlobalPrefix = 'documentation';
 
