@@ -4,6 +4,7 @@
   "projects": {
     "api": "apps/api",
     "coinbase": "libs/coinbase",
+    "frontend": "apps/frontend",
     "oms": "apps/oms",
     "prisma-api": "libs/prisma-api",
     "prisma-oms": "libs/prisma-oms",
