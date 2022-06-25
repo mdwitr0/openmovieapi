@@ -3,6 +3,7 @@
   "version": 2,
   "projects": {
     "api": "apps/api",
+    "apps-uploader": "apps/apps/uploader",
     "coinbase": "libs/coinbase",
     "oms": "apps/oms",
     "prisma-api": "libs/prisma-api",
