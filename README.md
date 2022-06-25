@@ -1,6 +1,6 @@
 
 
-# Kinopoiskdev
+# Kinopoiskdev - Неофициальное API кинопоиска
 
 This project was generated using [Nx](https://nx.dev).
 
