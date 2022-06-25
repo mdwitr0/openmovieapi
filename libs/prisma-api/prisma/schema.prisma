@@ -646,19 +646,22 @@ model Collection {
 }
 
 model Video {
-  id      String      @id @default(auto()) @map("_id") @db.ObjectId
-  kpId    Int
+  id        String      @id @default(auto()) @map("_id") @db.ObjectId
+  kpId      Int
   // String properties
-  name    String
-  url     String      @unique()
+  name      String
+  url       String      @unique()
   // Int properties
-  size    Int?
+  size      Int?
   // Enum properties
-  source  VideoSource
-  type    VideoType?
+  source    VideoSource
+  type      VideoType?
+  // Date properties
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
   // Relations
-  movie   Movie       @relation(fields: [movieId], references: [id])
-  movieId String      @db.ObjectId
+  movie     Movie       @relation(fields: [movieId], references: [id])
+  movieId   String      @db.ObjectId
 }
 
 model Image {
@@ -680,6 +683,7 @@ model Image {
   movie      Movie     @relation(fields: [movieId], references: [id])
   movieId    String    @unique @db.ObjectId
 }
+å
 
 model Season {
   id            String          @id @default(auto()) @map("_id") @db.ObjectId
