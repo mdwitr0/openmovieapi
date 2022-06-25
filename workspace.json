@@ -6,6 +6,7 @@
     "coinbase": "libs/coinbase",
     "oms": "apps/oms",
     "prisma-api": "libs/prisma-api",
-    "prisma-oms": "libs/prisma-oms"
+    "prisma-oms": "libs/prisma-oms",
+    "updater": "apps/updater"
   }
 }
