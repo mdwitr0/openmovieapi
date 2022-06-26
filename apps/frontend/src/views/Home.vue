@@ -61,7 +61,7 @@ import {LineChart} from "echarts/charts";
 import {
   TitleComponent,
   TooltipComponent,
-  LegendComponent, GridComponent, ToolboxComponent
+  LegendComponent, GridComponent, ToolboxComponent, DataZoomSliderComponent
 } from "echarts/components";
 import VChart, { THEME_KEY } from "vue-echarts";
 import { ref, defineComponent } from "vue";
@@ -69,6 +69,7 @@ import {MOVIE_DATASET} from "../constants/movie-dataset.constant";
 use([
   LineChart,
   GridComponent,
+  DataZoomSliderComponent,
   ToolboxComponent,
   CanvasRenderer,
   TitleComponent,
@@ -91,18 +92,32 @@ export default defineComponent({
     const option = ref( {
       xAxis: {
         type: 'category',
-        data: category
+        data: category,
+
       },
       yAxis: {
-        type: 'value'
+        type: 'value',
+
       },
       tooltip: {
         trigger: 'axis'
       },
+      dataZoom: [
+        {
+          id: 'dataZoomX',
+          type: 'slider',
+          xAxisIndex: [0],
+          filterMode: 'filter',
+          start: 87,
+          end: 97,
+
+        },
+      ],
       series: [
         {
           data: categoryCounts,
           type: 'line',
+          color: '#F46F85',
           smooth: true
         }
       ]
