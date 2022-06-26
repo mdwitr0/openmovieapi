@@ -59,35 +59,57 @@
           <h2 class="pricing__title">Тарифы</h2>
         <p class="pricing__description">За 3 года разработки API стало понятно, что он используется для бизнеса и для обучения. Чтобы стать более удобными теперь только 2 самых нужных тарифа.</p>
 
-        <div class="pricing__table">
-          <div class="pricing__table-row">
-            <h3 class="pricing__table-title">Обучение</h3>
-            <p class="pricing__table-description">Это тариф создан для некоммерческого использования kinopoisk API с целью обучения программированию. Идеален для студентов :)</p>
-            <ul class="pricing__table-items">
-              <li class="pricing__table-item">Доступ ко всем методам API кинопоиска (3000 запросов в сутки)</li>
-              <li class="pricing__table-item">Доступ к документации</li>
-              <li class="pricing__table-item">Доступ исходному коду API</li>
-              <li class="pricing__table-item">Нельзя использовать в приватных репозиториях в коммерческих целях</li>
-              <li class="pricing__table-item">Тех. поддержка в чате @dev_to_dev</li>
+        <div class="pricing-table">
+          <div class="pricing-table__row">
+            <h3 class="pricing-table__title">Обучение</h3>
+            <p class="pricing-table__description">Это тариф создан для некоммерческого использования kinopoisk API с целью обучения программированию. Идеален для студентов :)</p>
+            <ul class="pricing-table__items">
+              <li class="pricing-table__item">Доступ ко всем методам API кинопоиска (3000 запросов в сутки)</li>
+              <li class="pricing-table__item">Доступ к документации</li>
+              <li class="pricing-table__item">Доступ исходному коду API</li>
+              <li class="pricing-table__item">Нельзя использовать в приватных репозиториях в коммерческих целях</li>
+              <li class="pricing-table__item">Тех. поддержка в чате @dev_to_dev</li>
             </ul>
-            <a href="#" class="btn btn--secondary pricing__table-btn"></a>
+            <a href="#" class="btn btn--secondary pricing-table-btn"></a>
           </div>
-          <div class="pricing__table-row">
-            <h3 class="pricing__table-title">Бизнес</h3>
-            <p class="pricing__table-description">Для этого тарифа доступен тестовый период, который позволит вам не платить за апи во время эксперементов. Поумолчанию этот период длится 2 недели c момента активации тарифа, после 2000 р. в месяц.</p>
-            <ul class="pricing__table-items">
-              <li class="pricing__table-item">Безлимитный доступ ко всем методам API</li>
-              <li class="pricing__table-item">Доступ к документации</li>
-              <li class="pricing__table-item">Доступ исходному коду API</li>
-              <li class="pricing__table-item">Возможность купить дамп базы</li>
-              <li class="pricing__table-item">Возможность развернуть свой личный инстанс API</li>
-              <li class="pricing__table-item">Оперативная тех. поддержка</li>
+          <div class="pricing-table__row">
+            <h3 class="pricing-table__title">Бизнес</h3>
+            <p class="pricing-table__description">Для этого тарифа доступен тестовый период, который позволит вам не платить за апи во время эксперементов. Поумолчанию этот период длится 2 недели c момента активации тарифа, после 2000 р. в месяц.</p>
+            <ul class="pricing-table__items">
+              <li class="pricing-table__item">Безлимитный доступ ко всем методам API</li>
+              <li class="pricing-table__item">Доступ к документации</li>
+              <li class="pricing-table__item">Доступ исходному коду API</li>
+              <li class="pricing-table__item">Возможность купить дамп базы</li>
+              <li class="pricing-table__item">Возможность развернуть свой личный инстанс API</li>
+              <li class="pricing-table__item">Оперативная тех. поддержка</li>
             </ul>
-            <a href="#" class="btn btn--secondary pricing__table-btn"></a>
+            <a href="#" class="btn btn--secondary pricing-table-btn"></a>
           </div>
-
           </div>
-
+      </div>
+    </section>
+    <section class="support">
+      <div class="container support__container">
+        <div class="support__row">
+          <div class="support__title-wrap">
+            <h2 class="support__title">Поддержка</h2>
+            <div class="support__title--background"></div>
+          </div>
+        </div>
+        <div class="git support__row">
+          <div class="support__content">
+            <p class="support__tagline">Мы не оставим Вас без поддержки, сотрудники kinopoisk.dev онлайн 24/7. Готовы решить практически любой ваш вопрос, а также - подсказать, помочь, обновить, загрузить, даже доработать код для корректной работы с API kinopoisk.dev.
+            </p>
+            <a href="#" class="btn btn--primary support__btn">Подключиться к API</a>
+          </div>
+          <div class="support__hero">
+            <picture>
+              <source srcset="/img/ok.webp" type="image/webp">
+              <source srcset="/img/ok.png" type="image/png">
+              <img src="/img/ok.png"  alt="Поддержка API">
+            </picture>
+          </div>
+        </div>
       </div>
     </section>
     <div class="background">
