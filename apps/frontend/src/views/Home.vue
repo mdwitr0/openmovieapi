@@ -45,27 +45,42 @@
     <section class="graph">
       <div class="container graph__container">
         <div class="graph__row">
-          <h2 class="graph__title">Вся база кинопоиска в одном API</h2>
+          <h2 class="graph__title">Вся база КиноПоиска в одном API</h2>
           <div class="graph__chart">
-            <v-chart class="chart" :option="option" />          </div>
+            <h3>Статистика выхода фильмов по годам</h3>
+            <v-chart class="chart" :option="option"/>
+          </div>
         </div>
       </div>
     </section>
+    <div class="background">
+      <picture>
+        <source media="(max-width: 767px)" srcset="/img/bg-mobile.webp" type="image/webp">
+        <source media="(max-width: 767px)" srcset="/img/bg-mobile.jpg" type="image/jpg">
+        <source srcset="/img/bg-5k.webp" type="image/webp" >
+        <source srcset="/img/bg-5k.jpg" type="image/jpg">
+        <img src="/img/bg-5k.jpg" alt="" class="background__image">
+      </picture>
+    </div>
   </div>
 </template>
 
 <script>
-import { use } from "echarts/core";
-import { CanvasRenderer } from "echarts/renderers";
+import {use} from "echarts/core";
+import {CanvasRenderer} from "echarts/renderers";
 import {LineChart} from "echarts/charts";
 import {
+  DataZoomSliderComponent,
+  GridComponent,
+  LegendComponent,
   TitleComponent,
-  TooltipComponent,
-  LegendComponent, GridComponent, ToolboxComponent, DataZoomSliderComponent
+  ToolboxComponent,
+  TooltipComponent
 } from "echarts/components";
-import VChart, { THEME_KEY } from "vue-echarts";
-import { ref, defineComponent } from "vue";
+import VChart, {THEME_KEY} from "vue-echarts";
+import {defineComponent, ref} from "vue";
 import {MOVIE_DATASET} from "../constants/movie-dataset.constant";
+
 use([
   LineChart,
   GridComponent,
@@ -89,7 +104,7 @@ export default defineComponent({
     const category = MOVIE_DATASET.map(genre => genre._id);
     const categoryCounts = MOVIE_DATASET.map(item => item.count);
 
-    const option = ref( {
+    const option = ref({
       xAxis: {
         type: 'category',
         data: category,
@@ -123,7 +138,7 @@ export default defineComponent({
       ]
     });
 
-    return { option };
+    return {option};
   }
 });
 </script>
@@ -131,6 +146,20 @@ export default defineComponent({
 <style scoped>
 .chart {
   height: 50vh;
+}
+.background {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  z-index: -1;
+  left: 0;
+}
+
+.background__image {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
 }
 </style>
 
