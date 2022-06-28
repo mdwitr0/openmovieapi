@@ -306,30 +306,46 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style>
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+html {
+  font-weight: 300;
+  font-size: 27px;
+  line-height: 33px;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 96px;
+  line-height: 117px;
+  text-align: center;
+}
+
 .chart {
   height: 50vh;
 }
 
 .header__title {
-  font-family: 'Montserrat Alternates';
-  font-style: normal;
   font-weight: 700;
   font-size: 72px;
   line-height: 88px;
-  display: flex;
-  align-items: center;
   color: rgba(129, 150, 181, 0.5);
   backdrop-filter: blur(20px);
 }
+
 .intro__title {
   font-weight: 700;
   font-size: 96px;
   line-height: 117px;
-  display: flex;
-  align-items: center;
   color: #ffffff;
 }
+
 .intro__description {
   font-weight: 300;
   font-size: 27px;
@@ -567,8 +583,6 @@ h3 {
   display: flex;
 }
 
-/* Inline таблица стилей #7 | http://localhost:8080/ */
-
 .btn.btn--primary.support__btn {
   backdrop-filter: blur(20px);
   border-radius: 10px;
@@ -645,6 +659,130 @@ img {
 .support__hero-image {
   position: absolute;
   right: 0;
+}
+
+/* Inline таблица стилей #9 | http://localhost:8080/ */
+
+.header__title {
+}
+
+.container.header__container {
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  align-content: center;
+}
+
+.intro__row {
+  display: grid;
+  align-content: space-between;
+  height: 80vh;
+  box-sizing: ;
+}
+
+.header__title {
+}
+
+.container.header__container {
+  margin: 0px 94px;
+}
+
+.header__title {
+  margin-top: 98px;
+}
+
+.intro__description {
+  max-width: 41vw;
+  margin-bottom: 22px;
+}
+
+.intro__title {
+  margin-top: 160px;
+  margin-left: -5px;
+  text-align: left;
+}
+
+.btn.btn--primary.intro__btn {
+}
+
+.btn.btn--primary.intro__btn {
+  margin-left: 8px;
+}
+
+/* Inline таблица стилей #6 | http://localhost:8080/ */
+
+.container[data-v-fae5bece] {
+  /* margin: 0 100px; */
+  margin: 0 94px;
+}
+
+.container.header__container[data-v-fae5bece] {
+  /* height: 12vh; */
+  height: 21vh;
+}
+
+.container.intro__container[data-v-fae5bece] {
+  /* height: 87vh; */
+  height: 79vh;
+}
+
+/* Inline таблица стилей #6 | http://localhost:8080/ */
+
+.intro__description[data-v-fae5bece] {
+  /* max-width: 51vw; */
+  max-width: 45vw;
+}
+
+.container[data-v-fae5bece] {
+  /* margin: 0 100px; */
+  margin: 0px 94px;
+}
+
+/* Inline таблица стилей #6 | http://localhost:8080/ */
+
+.intro__description[data-v-fae5bece] {
+  /* max-width: 51vw; */
+}
+
+/* h1[data-v-fae5bece], h2[data-v-fae5bece], h3[data-v-fae5bece], h4[data-v-fae5bece], p[data-v-fae5bece] { */
+h2[data-v-fae5bece],
+h3[data-v-fae5bece],
+h4[data-v-fae5bece],
+p[data-v-fae5bece] {
+}
+
+/* Inline таблица стилей #-1 | http://localhost:8080/ */
+
+.intro__title {
+  /* display: flex; */
+  /* align-items: center; */
+}
+
+/* Inline таблица стилей #8 | http://localhost:8080/ */
+
+.btn.btn--primary.intro__btn {
+  /* padding: 25px 55px; */
+  padding: 34px 89px;
+  margin: 0 auto 0 0;
+}
+
+.intro__stats {
+  /* grid-gap: 20px; */
+  grid-gap: 26px;
+  margin-bottom: 74px;
+}
+
+.container.intro__container {
+  /* height: 87vh; */
+  height: 88vh;
+}
+
+.intro__img {
+  /* height: 87vh; */
+  height: 89vh;
+  bottom: 0;
 }
 </style>
 
