@@ -1,6 +1,7 @@
 
 
-# Kinopoiskdev - Неофициальное API кинопоиска
+# OpenMovieAPI - Открытое API c базой фильмов
+openmovieapi.dev
 
 This project was generated using [Nx](https://nx.dev).
 
