@@ -13,34 +13,20 @@
             {{ pageData.intro.description }}
           </p>
           <div class="intro__stats">
-            <div
-              class="intro__stat"
-              v-for="stat in pageData.intro.stats"
-              :key="stat.title"
-            >
+            <div class="intro__stat" v-for="stat in pageData.intro.stats" :key="stat.title">
               <span class="intro__stat-title">{{ stat.title }}</span>
               <div class="intro__stat-content">
                 <span class="intro__stat-value">{{ stat.value }}</span>
-                <span class="intro__stat-arrow"
-                  ><svg
-                    class="intro__stat-arrow-icon"
-                    width="60"
-                    height="23"
-                    viewBox="0 0 60 23"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
+                <span class="intro__stat-arrow"><svg class="intro__stat-arrow-icon" width="60" height="23"
+                    viewBox="0 0 60 23" xmlns="http://www.w3.org/2000/svg">
                     <path
-                      d="M59.0791 12.0422C59.6547 11.4464 59.6383 10.4968 59.0425 9.92124L49.3334 0.541275C48.7376 -0.0343266 47.788 -0.017954 47.2124 0.577844C46.6368 1.17364 46.6532 2.12325 47.249 2.69885L55.8793 11.0366L47.5415 19.6669C46.9659 20.2627 46.9823 21.2123 47.5781 21.7879C48.1739 22.3635 49.1235 22.3471 49.6991 21.7513L59.0791 12.0422ZM1.02586 13.4826L58.0262 12.4998L57.9744 9.50025L0.974142 10.483L1.02586 13.4826Z"
-                    />
+                      d="M59.0791 12.0422C59.6547 11.4464 59.6383 10.4968 59.0425 9.92124L49.3334 0.541275C48.7376 -0.0343266 47.788 -0.017954 47.2124 0.577844C46.6368 1.17364 46.6532 2.12325 47.249 2.69885L55.8793 11.0366L47.5415 19.6669C46.9659 20.2627 46.9823 21.2123 47.5781 21.7879C48.1739 22.3635 49.1235 22.3471 49.6991 21.7513L59.0791 12.0422ZM1.02586 13.4826L58.0262 12.4998L57.9744 9.50025L0.974142 10.483L1.02586 13.4826Z" />
                   </svg>
                 </span>
               </div>
             </div>
           </div>
-          <a
-            class="btn btn--primary intro__btn"
-            :href="pageData.intro.button.link"
-          >
+          <a class="btn btn--primary intro__btn" :href="pageData.intro.button.link">
             {{ pageData.intro.button.text }}
           </a>
         </div>
@@ -71,29 +57,18 @@
           {{ pageData.pricing.description }}
         </p>
         <div class="pricing__tables">
-          <div
-            class="pricing-table"
-            v-for="table in pageData.pricing.pricingTables"
-            :key="table.title"
-          >
+          <div class="pricing-table" v-for="table in pageData.pricing.pricingTables" :key="table.title">
             <div class="pricing-table__row">
               <h3 class="pricing-table__title">{{ table.title }}</h3>
               <p class="pricing-table__description">
                 {{ table.description }}
               </p>
               <ul class="pricing-table__items">
-                <li
-                  class="pricing-table__item"
-                  v-for="item in table.items"
-                  :key="item"
-                >
+                <li class="pricing-table__item" v-for="item in table.items" :key="item">
                   {{ item }}
                 </li>
               </ul>
-              <a
-                :href="table.button.link"
-                class="btn btn--secondary pricing-table-btn"
-              >
+              <a :href="table.button.link" class="btn btn--secondary pricing-table-btn">
                 {{ table.button.text }}
               </a>
             </div>
@@ -110,10 +85,7 @@
             <p class="support__description">
               {{ pageData.support.description }}
             </p>
-            <a
-              :href="pageData.support.button.link"
-              class="btn btn--primary support__btn"
-            >
+            <a :href="pageData.support.button.link" class="btn btn--primary support__btn">
               {{ pageData.support.button.text }}
             </a>
           </div>
@@ -121,28 +93,27 @@
             <picture>
               <source srcset="/img/ok.webp" type="image/webp" />
               <source srcset="/img/ok.png" type="image/png" />
-              <img
-                src="/img/ok.png"
-                class="support__hero-image"
-                alt="Поддержка API"
-              />
+              <img src="/img/ok.png" class="support__hero-image" alt="Поддержка API" />
             </picture>
           </div>
         </div>
       </div>
     </section>
+    <section class="example">
+      <div class="container example__container">
+        <h2 class="expample__title">{{ pageData.example.title }}</h2>
+        <div class="example__app" :key="app.title" v-for="app in pageData.example.items">
+          <h3 class="example__app-titile">{{ app.title }}</h3>
+          <iframe class="exapmple__editor" :src="app.embeddedLink" frameborder="0"></iframe>
+        </div>
+      </div>
+    </section>
+    <footer class="footer">
+    </footer>
     <div class="background">
       <picture>
-        <source
-          media="(max-width: 767px)"
-          srcset="/img/bg-mobile.webp"
-          type="image/webp"
-        />
-        <source
-          media="(max-width: 767px)"
-          srcset="/img/bg-mobile.jpg"
-          type="image/jpg"
-        />
+        <source media="(max-width: 767px)" srcset="/img/bg-mobile.webp" type="image/webp" />
+        <source media="(max-width: 767px)" srcset="/img/bg-mobile.jpg" type="image/jpg" />
         <source srcset="/img/bg-5k.webp" type="image/webp" />
         <source srcset="/img/bg-5k.jpg" type="image/jpg" />
         <img src="/img/bg-5k.jpg" alt="" class="background__image" />
@@ -302,6 +273,15 @@ export default defineComponent({
           link: '#',
         },
       },
+      example: {
+        title: 'Примеры использования API',
+        items: [
+          {
+            title: 'Vue JS / JS / TS',
+            embeddedLink: 'https://stackblitz.com/edit/vue-rucdrl?embed=1&file=src/App.vue&hideExplorer=1&hideNavigation=1&theme=dark'
+          }
+        ]
+      }
     });
 
     return { pageData };
@@ -317,6 +297,7 @@ h4,
 p {
   margin: 0;
 }
+
 html {
   font-weight: 300;
   font-size: 27px;
@@ -357,6 +338,7 @@ h1 {
   align-items: center;
   max-width: 51vw;
 }
+
 .intro__stat-title {
   font-style: normal;
   font-weight: 500;
@@ -366,6 +348,7 @@ h1 {
   align-items: center;
   /*! grid-area: 1fr; */
 }
+
 .intro__stat-value {
   font-style: normal;
   font-weight: 300;
@@ -374,20 +357,25 @@ h1 {
   display: flex;
   align-items: center;
 }
+
 .intro__stat-arrow {
   /*! border: 3px solid rgba(234, 242, 246, 0.4); */
   backdrop-filter: blur(20px);
 }
+
 svg {
   /*! backdrop-filter: blur(20px); */
 }
+
 .intro__stat-arrow-icon {
   fill: #fff;
 }
+
 .intro__stat-arrow-icon:hover {
   fill: rgba(234, 242, 246, 0.4);
   backdrop-filter: blur(20px);
 }
+
 .btn.btn--primary.intro__btn {
   background: rgba(129, 150, 181, 0.5);
   backdrop-filter: blur(20px);
@@ -403,30 +391,36 @@ svg {
   text-align: center;
   padding: 25px 55px;
 }
+
 .btn.btn--primary.intro__btn:hover {
   background: rgba(155, 181, 219, 0.5);
 }
+
 .container {
   display: flex;
   height: 100vh;
 }
+
 .container {
   height: 100vh;
   margin: 0 100px;
   box-sizing: border-box;
 }
+
 .container.intro__container {
   height: 87vh;
   overflow: hidden;
 }
+
 .intro__img {
   /*! position: absolute; */
   height: 87vh;
   position: absolute;
   right: 0;
 }
-.intro__row {
-}
+
+.intro__row {}
+
 .intro__stats {
   display: grid;
   /*! width: 100vw; */
@@ -434,18 +428,22 @@ svg {
   padding: ;
   grid-gap: 20px;
 }
+
 .intro__stat {
   /*! display: flex; */
   /*! grid-template-columns: 1fr, 1fr 1fr; */
 }
+
 .intro__stat-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 .container.header__container {
   height: 12vh;
 }
+
 .graph__title {
   font-weight: 700;
   font-size: 72px;
@@ -453,10 +451,11 @@ svg {
   text-align: center;
   color: #8196b5;
 }
-h3 {
-}
-.graph__row {
-}
+
+h3 {}
+
+.graph__row {}
+
 .background {
   width: 100vw;
   height: 100vh;
@@ -656,8 +655,7 @@ h3 {
   overflow: hidden;
 }
 
-img {
-}
+img {}
 
 .support__hero-image {
   position: absolute;
@@ -666,8 +664,7 @@ img {
 
 /* Inline таблица стилей #9 | http://localhost:8080/ */
 
-.header__title {
-}
+.header__title {}
 
 .container.header__container {
   display: flex;
@@ -685,8 +682,7 @@ img {
   box-sizing: ;
 }
 
-.header__title {
-}
+.header__title {}
 
 .container.header__container {
   margin: 0px 94px;
@@ -707,8 +703,7 @@ img {
   text-align: left;
 }
 
-.btn.btn--primary.intro__btn {
-}
+.btn.btn--primary.intro__btn {}
 
 .btn.btn--primary.intro__btn {
   margin-left: 8px;
@@ -753,8 +748,7 @@ img {
 h2[data-v-fae5bece],
 h3[data-v-fae5bece],
 h4[data-v-fae5bece],
-p[data-v-fae5bece] {
-}
+p[data-v-fae5bece] {}
 
 /* Inline таблица стилей #-1 | http://localhost:8080/ */
 
@@ -786,6 +780,50 @@ p[data-v-fae5bece] {
   /* height: 87vh; */
   height: 89vh;
   bottom: 0;
+}
+
+/* Inline таблица стилей #5 | http://localhost:8080/ */
+
+.container.example__container {
+  display: grid;
+  text-align: center;
+}
+
+.exapmple__editor {
+  height: 60vh;
+  width: 100%;
+  background: #161d29;
+  border: 2px solid rgba(129, 150, 181, 0.5);
+  border-radius: 10px;
+  width: ;
+  box-sizing: border-box;
+}
+
+.container.example__container {
+  /* justify-content: center; */
+}
+
+.expample__title {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 72px;
+  line-height: 88px;
+  text-align: center;
+  color: #8196b5;
+  width: 100%;
+  width: 100%;
+  flex: unset;
+}
+
+.example__app-titile {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 42px;
+  line-height: 88px;
+  text-align: initial;
+  width: 100%;
+  width: 100%;
+  flex: unset;
 }
 </style>
 
